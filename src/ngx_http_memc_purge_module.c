@@ -532,10 +532,6 @@ ngx_http_memc_purge_post_handler(ngx_http_request_t *r)
         return;
     }
 
-#if defined(nginx_version) && nginx_version >= 8011
-    r->main->count--;
-#endif
-
     ngx_str_t type = ngx_string("text/html;charset=utf-8");
     r->headers_out.status = NGX_HTTP_OK;
     r->headers_out.content_type = type;
