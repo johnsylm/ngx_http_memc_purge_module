@@ -204,7 +204,7 @@ ngx_http_memc_purge_handler(ngx_http_request_t *r)
         if(ctype.len < 33) return NGX_DECLINED;
 
         if (ngx_strncasecmp(ctype.data,
-                            (u_char *)"application/x-www-form-urlencoded"
+                            (u_char *)"application/x-www-form-urlencoded",
                             33) != 0)
         {
             return NGX_DECLINED;
