@@ -490,9 +490,6 @@ ngx_http_memc_purge_post_handler(ngx_http_request_t *r)
     mplcf = ngx_http_get_module_loc_conf(r, ngx_http_memc_purge_module);
     ctx = ngx_http_get_module_ctx(r, ngx_http_memc_purge_module);
 
-#if defined(nginx_version) && nginx_version >= 8011
-    r->main->count--;
-#endif
     ctx->done = 1;
 
     ngx_int_t rc;
@@ -534,6 +531,10 @@ ngx_http_memc_purge_post_handler(ngx_http_request_t *r)
         ngx_http_core_run_phases(r);
         return;
     }
+
+#if defined(nginx_version) && nginx_version >= 8011
+    r->main->count--;
+#endif
 
     ngx_str_t type = ngx_string("text/html;charset=utf-8");
     r->headers_out.status = NGX_HTTP_OK;
