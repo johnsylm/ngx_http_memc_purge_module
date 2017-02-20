@@ -30,13 +30,13 @@ Installation
 ============
 
 * Recommend version of nginx : 1.9.x / 1.10.3
-* Dependent libraries: libmemcached , openssl-dev , zlib-devel
+* Dependent libraries: libmemcached , openssl-devel , zlib-devel
 
 Take for example , install Nginx with this module on CentOS 7.1.
 
 ```bash
 
-yum install -y openssl-dev zlib-devel
+yum install -y openssl-devel zlib-devel
 
 wget 'https://launchpad.net/libmemcached/1.0/1.0.18/+download/libmemcached-1.0.18.tar.gz'
 tar -xzvf libmemcached-1.0.18.tar.gz
