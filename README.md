@@ -9,6 +9,7 @@ Table of Contents
 * [Description](#description)
 * [Configuration Options (nginx.conf)](#configuration-options-nginxconf)
 * [Installation](#installation)
+    * [Building as a dynamic module](#building-as-a-dynamic-module)
 * [Usage](#usage)
 * [PHP Tool](#php-tool)
 * [Unit test](#unit-test)
@@ -53,6 +54,16 @@ make
 make install
 ```
 
+Building as a dynamic module
+----------------------------
+
+Starting from NGINX 1.9.11, you can also compile this module as a dynamic module, by using the `--add-dynamic-module=PATH` option instead of `--add-module=PATH` on the
+`./configure` command line above. And then you can explicitly load the module in your `nginx.conf` via the [load_module](http://nginx.org/en/docs/ngx_core_module.html#load_module)
+directive, for example:
+
+```nginx
+load_module /path/to/modules/ngx_http_memc_purge_module.so;
+```
 
 Usage 
 =====

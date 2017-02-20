@@ -215,7 +215,10 @@ ngx_http_memc_purge_handler(ngx_http_request_t *r)
         if (rc == NGX_ERROR 
             || rc >= NGX_HTTP_SPECIAL_RESPONSE) 
         {
+#if (nginx_version < 1002006) ||                                             \
+        (nginx_version >= 1003000 && nginx_version < 1003009)
             r->main->count--;
+#endif
             return rc;
         }
         
@@ -487,6 +490,9 @@ ngx_http_memc_purge_post_handler(ngx_http_request_t *r)
     mplcf = ngx_http_get_module_loc_conf(r, ngx_http_memc_purge_module);
     ctx = ngx_http_get_module_ctx(r, ngx_http_memc_purge_module);
 
+#if defined(nginx_version) && nginx_version >= 8011
+    r->main->count--;
+#endif
     ctx->done = 1;
 
     ngx_int_t rc;

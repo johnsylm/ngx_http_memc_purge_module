@@ -9,9 +9,6 @@ int memcache_connect_test(char *ip, char *port, ngx_conf_t *cf)
     int r = memcache_connect(&memc, ip, port);
 
     if(r == 0) {
-        ngx_log_error(NGX_LOG_EMERG, cf->log, 0, 
-                      "[ngx_http_memc_purge_module] Connect to memcache(ip: %s, port: %s) Error!",
-                       ip, port);
         return 0;
     }
     
