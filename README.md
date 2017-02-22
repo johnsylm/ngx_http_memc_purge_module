@@ -20,10 +20,10 @@ Configuration Options (nginx.conf)
 `All of the following options must be contained in location block.`
 ```nginx
 #......
-ngx_memc_purge_active on|off #Default:off , Control this module is open 
-ngx_memc_purge_memcip 127.0.0.1 #Default:127.0.0.1
-ngx_memc_purge_memcport 11211 #Default:11211
-ngx_memc_purge_memcpre PLAYURL_ #Default:PLAYURL_ , Key prefix
+ngx_memc_purge_active on; #Default:off , Control this module is open 
+ngx_memc_purge_memcip 127.0.0.1; #Default:127.0.0.1
+ngx_memc_purge_memcport 11211; #Default:11211
+ngx_memc_purge_memcpre PLAYURL_; #Default:PLAYURL_ , Key prefix
 #......
 ```
 
@@ -45,6 +45,10 @@ cd libmemcached-1.0.18
 ./configure --prefix=/usr
 make
 make install
+
+
+(cat /etc/ld.so.conf|grep -E "^\/usr\/lib\/?$") && (echo "OK") || (echo "/usr/lib" >> /etc/ld.so.conf && ldconfig && echo "Insert OK")
+
 
 wget 'http://nginx.org/download/nginx-1.9.0.tar.gz'
 tar -xzvf nginx-1.9.0.tar.gz
