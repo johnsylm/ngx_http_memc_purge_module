@@ -7,7 +7,6 @@
  */
 class ngx_memc_purge
 {
-
     private static $_mem = null;
     private static $_memip = "127.0.0.1";
     private static $_memport = 11211;
@@ -70,17 +69,7 @@ class ngx_memc_purge
         }
 
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
-
-            reset($_POST);
-
-            while ( list($field, $value) = each($_POST) ) {
-                $key .= $field . '=' . $value. '&';
-            }
-
-            if (!empty($_POST)) {
-                $key = substr($key, 0, -1);
-            }
-
+            $key .= @file_get_contents("php://input");
         }
         
         // 对应 nginx.conf 配置项 ngx_memc_purge_memcpre, 默认值 : PLAYURL_
@@ -107,5 +96,4 @@ class ngx_memc_purge
 
         return $r;
     }
-
 }
